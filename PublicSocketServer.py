@@ -47,7 +47,7 @@ def client(conn,addr):
                 
                 #print('['+str(addr[0])+']:'+ str(data.decode('utf-8')))
                
-                sendall(bytes('['+str(addr[0])+']: '+ str(data.decode('utf-8')),'utf-8'),data.decode('utf-8'))
+                sendall(bytes(str(data.decode('utf-8')),'utf-8'),data.decode('utf-8'))
                 
             
         except Exception as e:

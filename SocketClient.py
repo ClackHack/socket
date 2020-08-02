@@ -35,7 +35,7 @@ def send():
   global s
   global labeltext
   while 1:
-    text = input()
+    text = input("")
     clear()
     import time
     if text == '':
