@@ -3,8 +3,11 @@ import _thread
 import socket
 import sys,requests
 
-ip = requests.get('https://api.ipify.org').text
-HOST = "10.0.1.76"
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+ip = str(s.getsockname()[0])
+s.close()
+HOST = ip
 PORT=5001
 
 
