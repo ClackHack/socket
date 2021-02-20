@@ -1,5 +1,5 @@
 import socket as so
-import os
+import os,sys
 clear=lambda:os.system("cls")
 labeltext=''
 import socket

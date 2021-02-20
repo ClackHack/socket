@@ -44,7 +44,6 @@ def client(conn,addr):
             last5.append(dat)
             
             if last5 ==['','','','','']:
-                
                 print("Connection with " + str(addr[0]+' has been terminated.'))
                 m = "Connection with " + str(addr[0]+' has been terminated.')
                 sendall(bytes(m,'utf-8'),m)
@@ -55,11 +54,16 @@ def client(conn,addr):
                     #print(i)
                     command = dat.split("]: ",1)[1]
                     #print(i,command)
-                    if begin(command,i):
+                    if command.split(" ")[0].strip()==i:
                         #print(i)
                         args = command.replace(i+" ","",1)
-                        x=j(conn,args)
-                        conn.sendall(bytes("[Server]: "+x,"utf-8"))
+                        try:
+                            x=j(conn,args)
+                            sendall(bytes("[Server]: "+x,"utf-8"),"[Server]: "+x)
+                        except Exception as e:
+                            print(e)
+                            sendall(bytes("[Server]: "+str(e),"utf-8"),"[Server]: "+str(e))
+
                 #print('['+str(addr[0])+']:'+ str(data.decode('utf-8')))
                
                 #sendall(bytes(str(data.decode('utf-8')),'utf-8'),data.decode('utf-8'))
