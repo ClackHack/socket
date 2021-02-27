@@ -27,7 +27,7 @@ class app(tk.Tk):
         try:
             target=open("server.txt","r").read()
         except:
-            pass
+            target=""
         self.host.set(target)
         tk.Entry(self.frame,textvariable=self.host).grid(row=1,column=1,padx=5,pady=5)
         tk.Button(self.frame,text="Join",command=self.join).grid(row=2,column=0,padx=5,pady=5)
