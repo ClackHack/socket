@@ -249,6 +249,7 @@ def hangmanvs(conn,args):
         return "You win, you have bested me\n"
     else:
         return "HAHA, I win! Try again if you dare!\n"
-    
-programs={"repeat":repeat,"dice":dice,"hangman":hangman,"programs":program_list,
-"joke":joke,"fact":fact,"reddit":red,"wikipedia":wiki,"hangmanvs":hangmanvs}
+def math(conn,args):
+    return str(eval(args))    
+programs={"dice":dice,"hangman":hangman,"programs":program_list,
+"joke":joke,"fact":fact,"reddit":red,"wikipedia":wiki,"hangmanvs":hangmanvs,"math":math}
