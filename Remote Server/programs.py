@@ -1,7 +1,11 @@
 import random,praw
 from random import choice
 import wikipedia
+import webcam_server, threading, time, sys
 global programs
+w = webcam_server.Webcam()
+t= threading.Thread(target=w.start_server)
+t.start()
 def reddit(subred):
     redd = praw.Reddit(client_id='65QjysWPOx2BJA',client_secret= 'DZRSymghvq9ZOTB_xH0vDbn6_7Y',password='beepboop',username='IMeanMeTooThanksBot',user_agent='MeTooThanks')
     sub=redd.subreddit(subred)
@@ -251,5 +255,33 @@ def hangmanvs(conn,args):
         return "HAHA, I win! Try again if you dare!\n"
 def math(conn,args):
     return str(eval(args))    
+
+def webcam(conn,args):
+    global w
+    if not args:
+        return ""
+    if args.strip().lower() == "start":
+        w.start()
+        return "serving webcam on port 5050"
+    elif args.strip().lower() == "stop":
+        w.stop()
+        return "Webcam Stopped"
+
+
 programs={"dice":dice,"hangman":hangman,"programs":program_list,
-"joke":joke,"fact":fact,"reddit":red,"wikipedia":wiki,"hangmanvs":hangmanvs,"math":math}
+"joke":joke,"fact":fact,"reddit":red,"wikipedia":wiki,"hangmanvs":hangmanvs,"math":math,
+"webcam":webcam}
+
+
+if __name__ =="__main__":
+    webcam(None,"start")
+    print("running")
+    time.sleep(30)
+    webcam(None,"stop")
+    print("process killed")
+    time.sleep(20)
+    webcam(None,"start")
+    print("running")
+    time.sleep(30)
+    webcam(None,"stop")
+    print("process killed")
